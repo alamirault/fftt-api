@@ -57,7 +57,7 @@ final class RetrieveClubDetailsOperation
     public function retrieveClubDetailsByEquipe(Equipe $equipe): ?ClubDetails
     {
         $nomEquipe = $this->extractClub($equipe);
-        $club = $this->listClubOperation->listClubsByVille($nomEquipe);
+        $club = $this->listClubOperation->listClubsByName($nomEquipe);
 
         if (1 === count($club)) {
             return $this->retrieveClubDetails($club[0]->getNumero());

@@ -46,12 +46,12 @@ final class ListClubOperation
     /**
      * @return array<Club>
      */
-    public function listClubsByVille(string $ville): array
+    public function listClubsByName(string $name): array
     {
         try {
             /** @var array<mixed> $rawClubs */
             $rawClubs = $this->client->get('xml_club_b', [
-                    'ville' => $ville,
+                    'ville' => $name,
                 ])['club'] ?? [];
 
             /** @var array<array{numero: string, nom: string, validation: array<mixed>|string}> $rawClubs */

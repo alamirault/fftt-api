@@ -135,7 +135,7 @@ final class FFTTApi
     /**
      * @return array<Organisme>
      */
-    public function getOrganismes(string $type = 'Z'): array
+    public function listOrganismes(string $type = 'Z'): array
     {
         return $this->listOrganismeOperation->listOrganismes($type);
     }
@@ -143,7 +143,7 @@ final class FFTTApi
     /**
      * @return array<Club>
      */
-    public function getClubsByDepartement(int $departementId): array
+    public function listClubsByDepartement(int $departementId): array
     {
         return $this->listClubOperation->listClubsByDepartement($departementId);
     }
@@ -151,12 +151,12 @@ final class FFTTApi
     /**
      * @return array<Club>
      */
-    public function getClubsByName(string $name): array
+    public function listClubsByName(string $name): array
     {
-        return $this->listClubOperation->listClubsByVille($name);
+        return $this->listClubOperation->listClubsByName($name);
     }
 
-    public function getClubDetails(string $clubId): ClubDetails
+    public function retrieveClubDetails(string $clubId): ClubDetails
     {
         return $this->retrieveClubDetailsOperation->retrieveClubDetails($clubId);
     }
@@ -164,7 +164,7 @@ final class FFTTApi
     /**
      * @return array<Joueur>
      */
-    public function getJoueursByClub(string $clubId): array
+    public function listJoueursByClub(string $clubId): array
     {
         return $this->listJoueurOperation->listJoueursByClub($clubId);
     }
@@ -172,17 +172,17 @@ final class FFTTApi
     /**
      * @return array<Joueur>
      */
-    public function getJoueursByNom(string $nom, string $prenom = ''): array
+    public function listJoueursByNom(string $nom, string $prenom = ''): array
     {
         return $this->listJoueurOperation->listJoueursByNom($nom, $prenom);
     }
 
-    public function getJoueurDetailsByLicence(string $licenceId): JoueurDetails
+    public function retrieveJoueurDetails(string $licenceId): JoueurDetails
     {
         return $this->retrieveJoueurDetailsOperation->retrieveJoueurDetails($licenceId);
     }
 
-    public function getClassementJoueurByLicence(string $licenceId): Classement
+    public function retrieveClassement(string $licenceId): Classement
     {
         return $this->retrieveClassementOperation->retrieveClassement($licenceId);
     }
@@ -190,7 +190,7 @@ final class FFTTApi
     /**
      * @return array<Historique>
      */
-    public function getHistoriqueJoueurByLicence(string $licenceId): array
+    public function listHistorique(string $licenceId): array
     {
         return $this->listHistoriqueOperation->listHistorique($licenceId);
     }
@@ -198,7 +198,7 @@ final class FFTTApi
     /**
      * @return array<Partie>
      */
-    public function getPartiesJoueurByLicence(string $licenceId): array
+    public function listPartiesJoueurByLicence(string $licenceId): array
     {
         return $this->listPartieOperation->listPartiesJoueurByLicence($licenceId);
     }
@@ -206,12 +206,12 @@ final class FFTTApi
     /**
      * @return array<UnvalidatedPartie>
      */
-    public function getUnvalidatedPartiesJoueurByLicence(string $licenceId): array
+    public function listUnvalidatedPartiesJoueurByLicence(string $licenceId): array
     {
         return $this->listPartieOperation->listUnvalidatedPartiesJoueurByLicence($licenceId);
     }
 
-    public function getJoueurVirtualPoints(string $licenceId): VirtualPoints
+    public function retrieveVirtualPoints(string $licenceId): VirtualPoints
     {
         return $this->virtualPointsOperation->retrieveVirtualPoints($licenceId);
     }
@@ -219,7 +219,7 @@ final class FFTTApi
     /**
      * @return array<Equipe>
      */
-    public function getEquipesByClub(string $clubId, string $type = null): array
+    public function listEquipesByClub(string $clubId, string $type = null): array
     {
         return $this->listEquipeOperation->listEquipesByClub($clubId, $type);
     }
@@ -227,7 +227,7 @@ final class FFTTApi
     /**
      * @return array<EquipePoule>
      */
-    public function getClassementPouleByLienDivision(string $lienDivision): array
+    public function listEquipePouleByLienDivision(string $lienDivision): array
     {
         return $this->listEquipePouleOperation->listEquipePouleByLienDivision($lienDivision);
     }
@@ -235,7 +235,7 @@ final class FFTTApi
     /**
      * @return array<Rencontre>
      */
-    public function getRencontrePouleByLienDivision(string $lienDivision): array
+    public function listRencontrePouleByLienDivision(string $lienDivision): array
     {
         return $this->listRencontreOperation->listRencontrePouleByLienDivision($lienDivision);
     }
@@ -243,17 +243,17 @@ final class FFTTApi
     /**
      * @return array<Rencontre>
      */
-    public function getProchainesRencontresEquipe(Equipe $equipe): array
+    public function listProchainesRencontresEquipe(Equipe $equipe): array
     {
         return $this->listRencontreOperation->listProchainesRencontresEquipe($equipe);
     }
 
-    public function getClubEquipe(Equipe $equipe): ?ClubDetails
+    public function retrieveClubDetailsByEquipe(Equipe $equipe): ?ClubDetails
     {
         return $this->retrieveClubDetailsOperation->retrieveClubDetailsByEquipe($equipe);
     }
 
-    public function getDetailsRencontreByLien(string $lienRencontre, string $clubEquipeA = '', string $clubEquipeB = ''): RencontreDetails
+    public function retrieveRencontreDetailsByLien(string $lienRencontre, string $clubEquipeA = '', string $clubEquipeB = ''): RencontreDetails
     {
         return $this->retrieveRencontreDetailsOperation->retrieveRencontreDetailsByLien($lienRencontre, $clubEquipeA, $clubEquipeB);
     }
@@ -261,7 +261,7 @@ final class FFTTApi
     /**
      * @return array<Actualite>
      */
-    public function getActualites(): array
+    public function listActualites(): array
     {
         return $this->listActualiteOperation->listActualites();
     }
