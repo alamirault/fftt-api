@@ -62,7 +62,7 @@ final class ListJoueurOperation
     {
         /** @var array<mixed> $arrayJoueurs */
         $arrayJoueurs = $this->client->get('xml_liste_joueur', [
-                'nom' => addslashes(Accentuation::remove($nom)), // TODO TODO remove this lib
+                'nom' => addslashes(Accentuation::remove($nom)),
                 'prenom' => addslashes(Accentuation::remove($prenom)),
             ]
         )['joueur'];

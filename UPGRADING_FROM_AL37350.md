@@ -5,7 +5,7 @@ L'ensemble du code à changé de namespace.
 
 ```php
 $api = new \FFTTApi\FFTTApi("identifiant", "password"); // Avant
-$api = new new \Alamirault\FFTTApi\Service\FFTTApi("identifiant", "password"); // Maintenant
+$api = new \Alamirault\FFTTApi\Service\FFTTApi("identifiant", "password"); // Maintenant
 ```
 
 Les modèles sont toujours les mêmes mais ont aussi changé de namespace

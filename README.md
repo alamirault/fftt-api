@@ -7,12 +7,6 @@ FFTTApi permet de consommer facilement l'API officielle de la Fédération Fran�
 Il est recommandé d'installer FFTTApi grâce à composer
 [Composer](http://getcomposer.org).
 
-### Installation avec Composer
-
-
-Il est recommandé d'installer FFTTApi grâce à composer
-[Composer](http://getcomposer.org).
-
 ```bash
 composer require alamirault/fftt-api
 ```
