@@ -2,9 +2,7 @@
 
 namespace Alamirault\FFTTApi\Exception;
 
-use Exception;
-
-final class InvalidLienRencontreException extends Exception
+final class InvalidLienRencontreException extends \Exception
 {
     public function __construct(string $lienRencontre)
     {

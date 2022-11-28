@@ -2,9 +2,7 @@
 
 namespace Alamirault\FFTTApi\Exception;
 
-use Exception;
-
-final class ClubNotFoundException extends Exception
+final class ClubNotFoundException extends \Exception
 {
     public function __construct(string $clubId)
     {

@@ -4,7 +4,6 @@ namespace Alamirault\FFTTApi\Service\Operation;
 
 use Alamirault\FFTTApi\Model\Actualite;
 use Alamirault\FFTTApi\Service\FFTTClientInterface;
-use DateTime;
 
 final class ListActualiteOperation
 {
@@ -35,8 +34,8 @@ final class ListActualiteOperation
         $result = [];
         /** @var array{date: string, titre: string, description: string, url: string, photo: string, categorie: string} $dataActualite */
         foreach ($data as $dataActualite) {
-            /** @var DateTime $date */
-            $date = DateTime::createFromFormat('!Y-m-d', $dataActualite['date']);
+            /** @var \DateTime $date */
+            $date = \DateTime::createFromFormat('!Y-m-d', $dataActualite['date']);
             $result[] = new Actualite(
                 $date,
                 $dataActualite['titre'],

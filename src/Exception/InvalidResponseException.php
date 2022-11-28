@@ -2,9 +2,7 @@
 
 namespace Alamirault\FFTTApi\Exception;
 
-use Exception;
-
-final class InvalidResponseException extends Exception
+final class InvalidResponseException extends \Exception
 {
     /**
      * @param array<mixed> $content

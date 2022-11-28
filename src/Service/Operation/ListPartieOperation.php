@@ -8,7 +8,6 @@ use Alamirault\FFTTApi\Model\UnvalidatedPartie;
 use Alamirault\FFTTApi\Service\FFTTClientInterface;
 use Alamirault\FFTTApi\Service\NomPrenomExtractorInterface;
 use DateTime;
-use Transliterator;
 
 final class ListPartieOperation
 {
@@ -51,8 +50,8 @@ final class ListPartieOperation
         /** @var array{advnompre: string, date: string, vd: string, numjourn: string, pointres: string, coefchamp: string, advlic: string, advsexe: string, advclaof: string} $partie */
         foreach ($parties as $partie) {
             [$nom, $prenom] = $this->nomPrenomExtractor->extractNomPrenom($partie['advnompre']);
-            /** @var DateTime $date */
-            $date = DateTime::createFromFormat('d/m/Y', $partie['date']);
+            /** @var \DateTime $date */
+            $date = \DateTime::createFromFormat('d/m/Y', $partie['date']);
 
             $realPartie = new Partie(
                 'V' === $partie['vd'],
@@ -97,8 +96,8 @@ final class ListPartieOperation
                         );
                 }));
 
-                /** @var DateTime $date */
-                $date = DateTime::createFromFormat('d/m/Y', $partie['date']);
+                /** @var \DateTime $date */
+                $date = \DateTime::createFromFormat('d/m/Y', $partie['date']);
 
                 if (!$found && 'Absent Absent' !== $prenom
                     && $this->isInCurrentSaison($date)
@@ -125,8 +124,8 @@ final class ListPartieOperation
 
     private function removeAccentLowerCaseRegex(string $string): string
     {
-        /** @var Transliterator $transliterator */
-        $transliterator = Transliterator::create('NFD; [:Nonspacing Mark:] Remove;');
+        /** @var \Transliterator $transliterator */
+        $transliterator = \Transliterator::create('NFD; [:Nonspacing Mark:] Remove;');
 
         /** @var string $transliterated */
         $transliterated = $transliterator->transliterate($string);
@@ -137,15 +136,15 @@ final class ListPartieOperation
     /**
      * Détermine si la date d'une rencontre passée en paramètre correspond à la saison en cours.
      */
-    private function isInCurrentSaison(Datetime $dateRencontre): bool
+    private function isInCurrentSaison(\DateTime $dateRencontre): bool
     {
-        $today = new DateTime();
+        $today = new \DateTime();
 
         $actualMonth = (int) $today->format('n');
         $actualYear = (int) $today->format('Y');
 
-        $dateDebutSaison = new DateTime($actualYear + ($actualMonth >= 7 ? 0 : -1).'-07-01');
-        $dateFinSaison = new DateTime($actualYear + ($actualMonth >= 7 ? 1 : 0).'-07-01');
+        $dateDebutSaison = new \DateTime($actualYear + ($actualMonth >= 7 ? 0 : -1).'-07-01');
+        $dateFinSaison = new \DateTime($actualYear + ($actualMonth >= 7 ? 1 : 0).'-07-01');
 
         return $dateRencontre >= $dateDebutSaison && $dateRencontre <= $dateFinSaison;
     }
@@ -156,9 +155,9 @@ final class ListPartieOperation
      * Exemple : si nous sommes le 6 Octobre, nous prenons les rencontre du 1er Septembre à aujourd'hui.
      * Exemple : si nous sommes le 15 Octobre, nous prenons les rencontre du 1er Octobre (les points virtuels sont connus à partir du 5 et les rencontres sont comptabilisées du 1er au 31 du mois) à aujourd'hui.
      */
-    private function isInCurrentVirtualMonth(Datetime $dateRencontre): bool
+    private function isInCurrentVirtualMonth(\DateTime $dateRencontre): bool
     {
-        $today = new DateTime();
+        $today = new \DateTime();
 
         $actualMonth = $today->format('n');
         $actualYear = $today->format('Y');
@@ -174,8 +173,8 @@ final class ListPartieOperation
             }
         }
 
-        $dateDebutMoisVirtuel = new DateTime($actualYear.'-'.$debutMoisVirtuel.'-01');
-        $dateFinMoisVirtuel = new DateTime();
+        $dateDebutMoisVirtuel = new \DateTime($actualYear.'-'.$debutMoisVirtuel.'-01');
+        $dateFinMoisVirtuel = new \DateTime();
 
         return $dateRencontre >= $dateDebutMoisVirtuel && $dateRencontre <= $dateFinMoisVirtuel;
     }

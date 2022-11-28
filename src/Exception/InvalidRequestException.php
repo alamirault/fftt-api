@@ -2,9 +2,7 @@
 
 namespace Alamirault\FFTTApi\Exception;
 
-use Exception;
-
-final class InvalidRequestException extends Exception
+final class InvalidRequestException extends \Exception
 {
     public function __construct(string $uri, int $statusCode, string $content)
     {

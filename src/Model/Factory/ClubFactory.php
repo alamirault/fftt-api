@@ -3,7 +3,6 @@
 namespace Alamirault\FFTTApi\Model\Factory;
 
 use Alamirault\FFTTApi\Model\Club;
-use DateTime;
 
 final class ClubFactory
 {
@@ -16,8 +15,8 @@ final class ClubFactory
     {
         $result = [];
         foreach ($data as $clubData) {
-            /** @var DateTime|null $dateValidation */
-            $dateValidation = is_array($clubData['validation']) ? null : DateTime::createFromFormat('!d/m/Y', $clubData['validation']);
+            /** @var \DateTime|null $dateValidation */
+            $dateValidation = is_array($clubData['validation']) ? null : \DateTime::createFromFormat('!d/m/Y', $clubData['validation']);
             $result[] = new Club(
                 $clubData['numero'],
                 $clubData['nom'],

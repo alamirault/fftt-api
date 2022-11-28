@@ -5,7 +5,6 @@ namespace Alamirault\FFTTApi\Service\Operation;
 use Alamirault\FFTTApi\Model\Equipe;
 use Alamirault\FFTTApi\Model\Rencontre\Rencontre;
 use Alamirault\FFTTApi\Service\FFTTClientInterface;
-use DateTime;
 
 final class ListRencontreOperation
 {
@@ -37,11 +36,11 @@ final class ListRencontreOperation
             /** @var string $nomEquipeB */
             $nomEquipeB = is_array($equipeB) ? '' : $equipeB;
 
-            /** @var DateTime $datePrevue */
-            $datePrevue = DateTime::createFromFormat('d/m/Y', $dataRencontre['dateprevue']);
+            /** @var \DateTime $datePrevue */
+            $datePrevue = \DateTime::createFromFormat('d/m/Y', $dataRencontre['dateprevue']);
 
-            /** @var DateTime|null $dateReelle */
-            $dateReelle = empty($dataRencontre['datereelle']) ? null : DateTime::createFromFormat('d/m/Y', $dataRencontre['datereelle']);
+            /** @var \DateTime|null $dateReelle */
+            $dateReelle = empty($dataRencontre['datereelle']) ? null : \DateTime::createFromFormat('d/m/Y', $dataRencontre['datereelle']);
 
             $result[] = new Rencontre(
                 $dataRencontre['libelle'],
