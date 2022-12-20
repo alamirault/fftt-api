@@ -66,6 +66,11 @@ final class FFTTClient implements FFTTClientInterface
         $content = preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $content);
         $content = html_entity_decode($content);
 
+        // Some requests have a different header than others, whose data must be correctly encoded
+        if ($response->hasHeader('content-type') && 'text/html; charset=UTF-8' === $response->getHeader('content-type')[0]) {
+            $content = mb_convert_encoding($content, 'ISO-8859-1', 'UTF-8');
+        }
+
         $xml = simplexml_load_string($content, 'SimpleXMLElement', LIBXML_NOCDATA);
 
         /** @var string $encoded */
