@@ -22,36 +22,39 @@ final class ListRencontreOperation
      */
     public function listRencontrePouleByLienDivision(string $lienDivision): array
     {
-        /** @var array<array{equa: array<mixed>|string, equb: array<mixed>|string, dateprevue:string, datereelle: ?string, libelle: string, scorea: string, scoreb: string, lien: string }> $data */
-        $data = $this->client->get('xml_result_equ', [], $lienDivision)['tour'];
+        $data = $this->client->get('xml_result_equ', [], $lienDivision);
 
         $result = [];
-        foreach ($data as $dataRencontre) {
-            $equipeA = $dataRencontre['equa'];
-            $equipeB = $dataRencontre['equb'];
+        if (array_key_exists('tour', $data)) {
+            /** @var array<array{equa: array<mixed>|string, equb: array<mixed>|string, dateprevue:string, datereelle: ?string, libelle: string, scorea: string, scoreb: string, lien: string }> $data */
+            $data = $data['tour'];
+            foreach ($data as $dataRencontre) {
+                $equipeA = $dataRencontre['equa'];
+                $equipeB = $dataRencontre['equb'];
 
-            /** @var string $nomEquipeA */
-            $nomEquipeA = is_array($equipeA) ? '' : $equipeA;
+                /** @var string $nomEquipeA */
+                $nomEquipeA = is_array($equipeA) ? '' : $equipeA;
 
-            /** @var string $nomEquipeB */
-            $nomEquipeB = is_array($equipeB) ? '' : $equipeB;
+                /** @var string $nomEquipeB */
+                $nomEquipeB = is_array($equipeB) ? '' : $equipeB;
 
-            /** @var \DateTime $datePrevue */
-            $datePrevue = \DateTime::createFromFormat('d/m/Y', $dataRencontre['dateprevue']);
+                /** @var \DateTime $datePrevue */
+                $datePrevue = \DateTime::createFromFormat('d/m/Y', $dataRencontre['dateprevue']);
 
-            /** @var \DateTime|null $dateReelle */
-            $dateReelle = empty($dataRencontre['datereelle']) ? null : \DateTime::createFromFormat('d/m/Y', $dataRencontre['datereelle']);
+                /** @var \DateTime|null $dateReelle */
+                $dateReelle = empty($dataRencontre['datereelle']) ? null : \DateTime::createFromFormat('d/m/Y', $dataRencontre['datereelle']);
 
-            $result[] = new Rencontre(
-                $dataRencontre['libelle'],
-                $nomEquipeA,
-                $nomEquipeB,
-                (int) $dataRencontre['scorea'],
-                (int) $dataRencontre['scoreb'],
-                $dataRencontre['lien'],
-                $datePrevue,
-                $dateReelle
-            );
+                $result[] = new Rencontre(
+                    $dataRencontre['libelle'],
+                    $nomEquipeA,
+                    $nomEquipeB,
+                    (int) $dataRencontre['scorea'],
+                    (int) $dataRencontre['scoreb'],
+                    $dataRencontre['lien'],
+                    $datePrevue,
+                    $dateReelle
+                );
+            }
         }
 
         return $result;
