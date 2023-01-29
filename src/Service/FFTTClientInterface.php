@@ -2,6 +2,7 @@
 
 namespace Alamirault\FFTTApi\Service;
 
+use Alamirault\FFTTApi\Exception\InternalServerErrorException;
 use Alamirault\FFTTApi\Exception\InvalidRequestException;
 use Alamirault\FFTTApi\Exception\InvalidResponseException;
 
@@ -14,6 +15,7 @@ interface FFTTClientInterface
      *
      * @throws InvalidRequestException
      * @throws InvalidResponseException
+     * @throws InternalServerErrorException
      * @param string $path
      * @param string|null $queryParameter
      */

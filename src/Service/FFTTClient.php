@@ -2,10 +2,12 @@
 
 namespace Alamirault\FFTTApi\Service;
 
+use Alamirault\FFTTApi\Exception\InternalServerErrorException;
 use Alamirault\FFTTApi\Exception\InvalidRequestException;
 use Alamirault\FFTTApi\Exception\InvalidResponseException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\ServerException;
 use Psr\Http\Message\ResponseInterface;
 
 final class FFTTClient implements FFTTClientInterface
@@ -39,6 +41,9 @@ final class FFTTClient implements FFTTClientInterface
             /** @var ResponseInterface $response */
             $response = $ce->getResponse();
             throw new InvalidRequestException($uri, $response->getStatusCode(), $response->getBody()->getContents());
+        } catch (ServerException $se) {
+            $response = $se->getResponse();
+            throw new InternalServerErrorException($uri, ($response2 = $response) ? $response2->getStatusCode() : null, ($getBody = ($response2 = $response) ? $response2->getBody() : null) ? $getBody->getContents() : null);
         }
 
         if (array_key_exists('0', $result)) {
