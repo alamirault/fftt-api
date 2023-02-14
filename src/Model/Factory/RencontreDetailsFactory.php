@@ -168,7 +168,7 @@ final class RencontreDetailsFactory
 
         foreach ($joueursClub as $joueurClub) {
             if ($joueurClub->getNom() === Accentuation::remove($nom) && $joueurClub->getPrenom() === $prenom) {
-                $return = preg_match('/^(N.[0-9]*- ){0,1}(?<sexe>[A-Z]{1}) (?<points>[0-9]+)pts$/', $points, $result);
+                $return = preg_match('/^(N°[0-9]*- ){0,1}(?<sexe>[A-Z]{1}) (?<points>[0-9]+)pts$/', $points, $result);
 
                 if (false === $return) {
                     throw new \RuntimeException(sprintf("Not able to extract sexe and points in '%s'", $points));
