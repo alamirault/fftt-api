@@ -9,4 +9,9 @@ interface NomPrenomExtractorInterface
      * @param string $raw
      */
     public function extractNomPrenom($raw): array;
+
+    /**
+     * @param string $raw
+     */
+    public function removeSeparatorsDuplication($raw): string;
 }
