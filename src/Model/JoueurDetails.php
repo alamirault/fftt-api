@@ -54,7 +54,7 @@ final class JoueurDetails
     private $isHomme;
     /**
      * @readonly
-     * @var string
+     * @var string|null
      */
     private $categorie;
     /**
@@ -89,7 +89,7 @@ final class JoueurDetails
     private $classementNational;
     /**
      * @readonly
-     * @var \Alamirault\FFTTApi\Model\Enums\NationaliteEnum
+     * @var \Alamirault\FFTTApi\Model\Enums\NationaliteEnum|null
      */
     private $nationalite;
     /**
@@ -112,7 +112,7 @@ final class JoueurDetails
      * @var string|null
      */
     private $diplomeTechnique;
-    public function __construct(int $idLicence, string $licence, string $nom, string $prenom, ?TypeLicenceEnum $typeLicence, ?\DateTime $dateValidation, string $numClub, string $nomClub, bool $isHomme, string $categorie, ?float $pointDebutSaison, float $pointsLicence, ?float $pointsMensuel, ?float $pointsMensuelAnciens, bool $isClasseNational, ?int $classementNational, NationaliteEnum $nationalite, ?\DateTime $dateMutation, ?string $diplomeArbitre, ?string $diplomeJugeArbitre, ?string $diplomeTechnique)
+    public function __construct(int $idLicence, string $licence, string $nom, string $prenom, ?TypeLicenceEnum $typeLicence, ?\DateTime $dateValidation, string $numClub, string $nomClub, bool $isHomme, ?string $categorie, ?float $pointDebutSaison, float $pointsLicence, ?float $pointsMensuel, ?float $pointsMensuelAnciens, bool $isClasseNational, ?int $classementNational, ?NationaliteEnum $nationalite, ?\DateTime $dateMutation, ?string $diplomeArbitre, ?string $diplomeJugeArbitre, ?string $diplomeTechnique)
     {
         $this->idLicence = $idLicence;
         $this->licence = $licence;
@@ -162,7 +162,7 @@ final class JoueurDetails
         return $this->classementNational;
     }
 
-    public function getNationalite(): NationaliteEnum
+    public function getNationalite(): ?NationaliteEnum
     {
         return $this->nationalite;
     }
@@ -217,7 +217,7 @@ final class JoueurDetails
         return $this->isHomme;
     }
 
-    public function getCategorie(): string
+    public function getCategorie(): ?string
     {
         return $this->categorie;
     }

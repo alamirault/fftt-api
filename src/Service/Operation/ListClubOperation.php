@@ -36,8 +36,8 @@ final class ListClubOperation
     {
         /** @var array<array{numero: string, nom: string, validation: array<mixed>|string}> $rawClubs */
         $rawClubs = $this->client->get('xml_club_dep2', [
-            'dep' => (string) $departementId,
-        ])['club'];
+            'dep' => str_pad((string) $departementId, 2, '0', STR_PAD_LEFT),
+        ])['club'] ?? [];
 
         return $this->clubFactory->createFromArray($rawClubs);
     }
