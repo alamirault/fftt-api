@@ -4,7 +4,7 @@ namespace Alamirault\FFTTApi\Service;
 
 final class UriGenerator implements UriGeneratorInterface
 {
-    private const FFTT_URL = 'http://www.fftt.com/mobile/pxml/';
+    private const FFTT_URL = 'https://www.fftt.com/mobile/pxml/';
     /**
      * @readonly
      * @var string

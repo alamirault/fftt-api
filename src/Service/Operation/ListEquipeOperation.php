@@ -25,7 +25,7 @@ final class ListEquipeOperation
     /**
      * @return array<Equipe>
      */
-    public function listEquipesByClub(string $clubId, string $type = null): array
+    public function listEquipesByClub(string $clubId, ?string $type = null): array
     {
         $params = [
             'numclu' => $clubId,

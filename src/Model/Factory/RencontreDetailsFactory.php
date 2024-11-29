@@ -175,6 +175,7 @@ final class RencontreDetailsFactory
                 if (false === $return) {
                     throw new \RuntimeException(sprintf("Not able to extract sexe and points in '%s'", $points));
                 }
+                /** @var array{sexe: string|null, points: string|null} $result */
                 $sexe = $result['sexe'];
                 $playerPoints = $result['points'];
 

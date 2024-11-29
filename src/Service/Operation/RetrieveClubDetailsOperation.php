@@ -28,8 +28,8 @@ final class RetrieveClubDetailsOperation
     {
         /** @var array<mixed> $clubData */
         $clubData = $this->client->get('xml_club_detail', [
-                'club' => $clubId,
-            ])['club'] ?? [];
+            'club' => $clubId,
+        ])['club'] ?? [];
 
         if (false === array_key_exists('numero', $clubData)) {
             throw new ClubNotFoundException($clubId);

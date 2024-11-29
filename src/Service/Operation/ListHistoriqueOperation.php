@@ -29,8 +29,8 @@ final class ListHistoriqueOperation
     {
         /** @var array<mixed> $classements */
         $classements = $this->client->get('xml_histo_classement', [
-                'numlic' => $licenceId,
-            ])['histo'] ?? [];
+            'numlic' => $licenceId,
+        ])['histo'] ?? [];
 
         $classements = $this->arrayWrapper->wrapArrayIfUnique($classements);
 

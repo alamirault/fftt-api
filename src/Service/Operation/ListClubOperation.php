@@ -50,8 +50,8 @@ final class ListClubOperation
         try {
             /** @var array<mixed> $rawClubs */
             $rawClubs = $this->client->get('xml_club_b', [
-                    'ville' => $name,
-                ])['club'] ?? [];
+                'ville' => $name,
+            ])['club'] ?? [];
 
             /** @var array<array{numero: string, nom: string, validation: array<mixed>|string}> $rawClubs */
             $rawClubs = $this->arrayWrapper->wrapArrayIfUnique($rawClubs);

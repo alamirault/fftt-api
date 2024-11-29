@@ -21,8 +21,8 @@ final class RetrieveClassementOperation
     {
         /** @var array<mixed> $joueurDetails */
         $joueurDetails = $this->client->get('xml_joueur', [
-                'licence' => $licenceId,
-            ])['joueur'] ?? [];
+            'licence' => $licenceId,
+        ])['joueur'] ?? [];
 
         if (false === array_key_exists('nom', $joueurDetails)) {
             throw new JoueurNotFoundException($licenceId);
